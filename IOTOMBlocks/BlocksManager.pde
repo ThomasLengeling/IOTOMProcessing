@@ -6,5 +6,14 @@ class BlockManager {
   }
 
   void addBox(float x, float y, float z) {
+    blocks.add(new Block(x, y, z));
   }
+
+  void drawBlocks(PGraphics pg) {
+    for (Block block : blocks) {
+      block.drawBlock(pg);
+    }
+  }
+  
+  
 }

@@ -7,10 +7,9 @@ class Face{
   color     col;
   int       id;
   
-  Face(int id){
+  Face(){
     vertices = new ArrayList<Vertex>();
     col = color(255);
-    this.id = id;
   }
   
   
@@ -25,17 +24,17 @@ class Face{
   
 
   //Draw Face 
-  void drawFace(){
-    pushStyle();
+  void drawFace(PGraphics pg){
+    pg.pushStyle();
     
-    fill(col);
-    beginShape();
+    pg.fill(col);
+    pg.beginShape();
     for(Vertex vert : vertices){
-      vertex(vert.getX(), vert.getY(), vert.getZ());
+      pg.vertex(vert.getX(), vert.getY(), vert.getZ());
     }
-    endShape(CLOSE);
+    pg.endShape(CLOSE);
     
-    popStyle();
+    pg.popStyle();
   }
   
  
