@@ -7,11 +7,13 @@ IOTOM Block Simulation
  Thomas Sanchez Lengeling
  */
 
-
 BlockManager iotoms;
 
 //Main scene of the blocks
 PGraphics mainScene;
+float rotateMainSceneX = -3.06;
+float rotateMainSceneY = -2.72;
+float distanceZoom = 200;
 
 //GUI scene for selecting the Scene
 PGraphics guiScene;
@@ -22,13 +24,28 @@ int widthGuiScene = 300;
 void setup() {
   size(1280, 720, P3D);
 
+  smooth(8);
+
   mainScene = createGraphics(1280, 720, P3D);
+  mainScene.smooth(8);
   guiScene  = createGraphics(widthGuiScene, 720, P3D);
+  guiScene.smooth(8);
 
   iotoms = new BlockManager();
 
-  //add new block with a size
-  iotoms.addBox(10, 10, 10);
+  //add new block
+  Block box =  new Block(5, 5, 5); //10, 10, 10
+  box.setPosition(0, 0, 0);   //center
+  iotoms.addBox(box);
+
+  Block box2 =  new Block(5, 5, 5);
+  box2.setPosition(20, 0, 10);   //position
+  iotoms.addBox(box2);
+
+  //long block
+  Block boxlong =  new Block(5, 5, 15);
+  boxlong.setPosition(30, 0, 0);   //position
+  iotoms.addBox(boxlong);
 }
 
 
@@ -49,7 +66,7 @@ void renderMainScene() {
   mainScene.fill(0, 250);
   mainScene.rect(0, 0, mainScene.width, mainScene.height);
   mainScene.pushMatrix();
-  mainScene.translate(width/2.0, height/2.0, 250);
+  mainScene.translate(width/2.0, height/2.0,  distanceZoom);
 
 
   rotateScene(mainScene);
@@ -72,13 +89,13 @@ void drawIOTOMS() {
 
 void drawSurface() {
   mainScene.pushMatrix();
-  mainScene.translate(-100, -100, -90);
+  mainScene.translate(-135, -95, -135);
 
   for (int i = 0; i < 10; i++) {
     for (int j = 0; j < 10; j++) {
       float tam = 30;
 
-      mainScene.fill(100, 100, 100);
+      mainScene.fill(70, 70, 70);
       mainScene.beginShape();
       mainScene.vertex( tam + i*tam, tam, -tam + j*tam);
       mainScene.vertex(-tam + i*tam, tam, -tam + j*tam);
@@ -107,6 +124,17 @@ void drawScenes() {
 
 
 void rotateScene(PGraphics pg) {
-  pg.rotateY(map(mouseX, 0, width, -PI, PI));
-  pg.rotateX(map(mouseY, 0, height, -PI, PI));
+  if (mousePressed) {
+    rotateMainSceneX =  map(mouseX, 0, width, -PI, -(6*PI)/8.0);
+    rotateMainSceneY =  map(mouseY, 0, height, -PI, PI);
+  }
+  pg.rotateY(rotateMainSceneY);
+  pg.rotateX(rotateMainSceneX);
+}
+
+
+void mouseWheel(MouseEvent event) {
+  float e = event.getCount();
+  distanceZoom += e;
+  println(distanceZoom);
 }

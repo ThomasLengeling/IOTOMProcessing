@@ -5,13 +5,16 @@ class BlockManager {
     blocks = new ArrayList<Block>();
   }
 
-  void addBox(float x, float y, float z) {
-    blocks.add(new Block(x, y, z));
+  void addBox(Block b){
+    blocks.add(b);
   }
 
   void drawBlocks(PGraphics pg) {
     for (Block block : blocks) {
+      pg.pushMatrix();
+      pg.translate(block.getPosX(), block.getPosY(), block.getPosZ());
       block.drawBlock(pg);
+      pg.popMatrix();
     }
   }
   
