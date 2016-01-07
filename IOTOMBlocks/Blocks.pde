@@ -1,3 +1,11 @@
+/*
+Back   -> blues
+Right  -> red
+Left   -> green
+Bottom -> yellow
+Top    -> purple
+Front  -> aqua
+*/
 class Block {
   ArrayList<Face> faces;
   float lengthX;
@@ -10,12 +18,14 @@ class Block {
 
   Block(float x, float y, float z) {
     faces = new ArrayList<Face>();
+    
     //Back
     Face backFace = new Face();
     backFace.addVertex(new Vertex(x, -y, -z));
     backFace.addVertex(new Vertex(-x, -y, -z));
     backFace.addVertex(new Vertex(-x, y, -z));
     backFace.addVertex(new Vertex(x, y, -z));
+    backFace.setColor(color(0, 0, 255));
     faces.add(backFace);
 
     //Right
@@ -24,6 +34,7 @@ class Block {
     rightFace.addVertex(new Vertex(x, y, z));
     rightFace.addVertex(new Vertex(x, -y, z));
     rightFace.addVertex(new Vertex(x, -y, -z));
+    rightFace.setColor(color(255, 0, 0));
     faces.add(rightFace);
 
     //Left
@@ -32,6 +43,7 @@ class Block {
     leftFace.addVertex(new Vertex(-x, y, -z));
     leftFace.addVertex(new Vertex(-x, -y, -z));
     leftFace.addVertex(new Vertex(-x, -y, z));
+    leftFace.setColor(color(0, 255, 0));
     faces.add(leftFace);
 
     //bottom
@@ -40,6 +52,7 @@ class Block {
     bottomFace.addVertex(new Vertex(-x, -y, z));
     bottomFace.addVertex(new Vertex(-x, -y, -z));
     bottomFace.addVertex(new Vertex(x, -y, -z));
+    bottomFace.setColor(color(255, 255, 0));
     faces.add(bottomFace);
 
     //Top
@@ -48,6 +61,7 @@ class Block {
     topFace.addVertex(new Vertex(-x, y, -z));
     topFace.addVertex(new Vertex(-x, y, z));
     topFace.addVertex(new Vertex(x, y, z));
+    topFace.setColor(color(255, 0, 255));
     faces.add(topFace);
 
     //Front
@@ -56,6 +70,7 @@ class Block {
     frontFace.addVertex(new Vertex(-x, y, z));
     frontFace.addVertex(new Vertex(-x, -y, z));
     frontFace.addVertex(new Vertex(x, -y, z));
+    frontFace.setColor(color(0, 255, 255));
     faces.add(frontFace);
 
     lengthX = x;

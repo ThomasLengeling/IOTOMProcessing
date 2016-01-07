@@ -1,5 +1,5 @@
 /*
-IOTOM Block Simulation
+ IOTOM Block Simulation
  
  Penny Webb
  Manisha Mohan
@@ -11,9 +11,9 @@ BlockManager iotoms;
 
 //Main scene of the blocks
 PGraphics mainScene;
-float rotateMainSceneX = -3.06;
-float rotateMainSceneY = -2.72;
-float distanceZoom = 200;
+float rotateMainSceneX = -3.09;
+float rotateMainSceneY = -1.05;
+float distanceZoom = 370;
 
 //GUI scene for selecting the Scene
 PGraphics guiScene;
@@ -66,14 +66,12 @@ void renderMainScene() {
   mainScene.fill(0, 250);
   mainScene.rect(0, 0, mainScene.width, mainScene.height);
   mainScene.pushMatrix();
-  mainScene.translate(width/2.0, height/2.0,  distanceZoom);
-
+  mainScene.translate(width/2.0, height/2.0, distanceZoom);
 
   rotateScene(mainScene);
 
   drawSurface();
   drawIOTOMS();
-
 
   mainScene.popMatrix();
   mainScene.endDraw();
@@ -130,6 +128,8 @@ void rotateScene(PGraphics pg) {
   }
   pg.rotateY(rotateMainSceneY);
   pg.rotateX(rotateMainSceneX);
+
+  println(rotateMainSceneX+" "+rotateMainSceneY);
 }
 
 
