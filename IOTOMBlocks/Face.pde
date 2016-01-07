@@ -7,6 +7,8 @@ class Face{
   color     col;
   int       id;
   
+  GVertex graphVertex;
+  
   Face(){
     vertices = new ArrayList<Vertex>();
     col = color(255);

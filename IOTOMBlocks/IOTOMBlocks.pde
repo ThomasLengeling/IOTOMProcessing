@@ -6,6 +6,14 @@
  HyeJi Yang
  Thomas Sanchez Lengeling
  */
+ 
+import java.util.List;
+import java.util.Set;
+
+import org.jgrapht.alg.*;
+import org.jgrapht.*;
+import org.jgrapht.graph.*;
+
 
 BlockManager iotoms;
 
@@ -46,6 +54,8 @@ void setup() {
   Block boxlong =  new Block(5, 5, 15);
   boxlong.setPosition(30, 0, 0);   //position
   iotoms.addBox(boxlong);
+  
+  createCustomGraph();
 }
 
 
@@ -129,12 +139,12 @@ void rotateScene(PGraphics pg) {
   pg.rotateY(rotateMainSceneY);
   pg.rotateX(rotateMainSceneX);
 
-  println(rotateMainSceneX+" "+rotateMainSceneY);
+  //println(rotateMainSceneX+" "+rotateMainSceneY);
 }
 
 
 void mouseWheel(MouseEvent event) {
   float e = event.getCount();
   distanceZoom += e;
-  println(distanceZoom);
+  //println(distanceZoom);
 }
